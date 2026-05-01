@@ -25,6 +25,10 @@ export class BoardDetailsComponent implements OnInit {
       console.log('Loaded Board Data:',this.currentBoard);
     }
 
+    this.route.queryParamMap.subscribe(params => {
+      console.log('Query Params:', params.get('view'));
+    });
+
   });
  }
 

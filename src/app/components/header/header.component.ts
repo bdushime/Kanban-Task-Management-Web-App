@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -9,6 +9,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  // Dummy data for Phase 1 UI
-  boardName = 'Platform Launch';
+   boardName = 'Platform Launch';
+  constructor(private router:Router){}
+
+  goToSettings(){
+    this.router.navigate(['/settings'])
+  }
 }
