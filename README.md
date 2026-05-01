@@ -1,59 +1,36 @@
-# KanbanTaskManagement
+# Kanban Task Management Web App - Angular Routing Lab
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+A professional Kanban board application built with Angular, focusing on advanced routing, navigation, and state management.
 
-## Development server
+Deployed link:
 
-To start a local development server, run:
+##  Features
 
-```bash
-ng serve
-```
+### 1. Advanced Angular Routing
+- **Dynamic Route Parameters:** Implemented `:id` parameters to dynamically load board data from a shared service.
+- **Wildcard Handling:** A dedicated `**` route catches undefined paths and redirects users to a custom 404 Not Found page.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 2. Navigation & UX
+- **Declarative Navigation:** Uses `routerLink` for seamless SPA navigation without browser refreshes.
+- **Active State Tracking:** Utilizes `routerLinkActive` to provide visual feedback on the current active board.
+- **Programmatic Navigation:** Uses the `Router` service to navigate users via TypeScript logic (found in the Settings toggle).
+- **Query Parameters:** Supports optional query parameters (e.g., `?view=edit`) for advanced filtering and view modes.
 
-## Code scaffolding
+### 3. Security & Navigation Guards
+- **CanActivate Guard:** A custom `AuthGuard` protects board routes, ensuring only authenticated users can access private data.
+- **CanDeactivate Guard:** An `UnsavedChangesGuard` prevents data loss by warning users before they navigate away from a board with pending changes.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 4. Reactive State Management
+- **Centralized Service:** A `BoardService` acts as the single source of truth, managing application state and providing data to components via Dependency Injection.
 
-```bash
-ng generate component component-name
-```
+##  Tech Stack
+- **Framework:** Angular 19 (Standalone Components)
+- **Styling:** Vanilla CSS (CSS Variables for Dark/Light Mode)
+- **Routing:** Angular Router (Lazy Loading, Functional Guards)
+- **State Management:** RxJS & Services
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+##  Getting Started
+1. Clone the repository
+2. Run `npm install`
+3. Run `ng serve` to start the development server
+4. Navigate to `http://localhost:4200/`
