@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './boards.component.css'
 })
 export class BoardsComponent {
-  // UI-only for now
+  
 }

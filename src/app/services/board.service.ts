@@ -7,5 +7,24 @@ import boardDataJson from '../../../public/assets/data.json';
   providedIn: 'root'
 })
 export class BoardService {
-  // We will build this together step by step!
+  
+  public boards: Board[] = [];
+
+  constructor(){
+    this.loadInitialData();
+  }
+
+  private loadInitialData(){
+    const data = boardDataJson as BoardData;
+    this.boards = data.boards;
+  }
+  
+  getBoards(): Board[]{
+    return this.boards;
+  }
+
+  getBoardById(id:number):Board | undefined {
+    return this.boards[id];
+  }
 }
+
