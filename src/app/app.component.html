@@ -1,6 +1,9 @@
+<div *ngIf="isLoading" class="loading-bar">
+  Loading...
+</div>
 <div class="app-layout" [class.sidebar-closed]="!isSidebarOpen">
   <app-sidebar *ngIf="isSidebarOpen" class="app-sidebar"></app-sidebar>
-
+  
   <div class="app-main">
     <app-header class="app-header"></app-header>
     
