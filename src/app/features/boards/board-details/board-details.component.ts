@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BoardService } from '../../../services/board.service';
 import { Board } from '../../../models/board.model';
 @Component({
   selector: 'app-board-details',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './board-details.component.html',
   styleUrl: './board-details.component.css',
 })
@@ -22,6 +22,11 @@ export class BoardDetailsComponent implements OnInit {
 
     if(this.boardId !== null){
       this.currentBoard = this.boardService.getBoardById(Number(this.boardId));
+      if (this.currentBoard) {
+        this.boardService.setActiveBoardName(this.currentBoard.name);
+      } else {
+        this.boardService.setActiveBoardName('Page Not Found');
+      }
       console.log('Loaded Board Data:',this.currentBoard);
     }
 

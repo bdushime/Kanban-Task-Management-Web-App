@@ -7,24 +7,30 @@ import boardDataJson from '../../../public/assets/data.json';
   providedIn: 'root'
 })
 export class BoardService {
+  private activeBoardNameSubject = new BehaviorSubject<string>('Platform Launch');
+  activeBoardName$ = this.activeBoardNameSubject.asObservable();
   
   public boards: Board[] = [];
 
-  constructor(){
+  constructor() {
     this.loadInitialData();
   }
 
-  private loadInitialData(){
+  private loadInitialData() {
     const data = boardDataJson as BoardData;
     this.boards = data.boards;
   }
-  
-  getBoards(): Board[]{
+
+  getBoards(): Board[] {
     return this.boards;
   }
 
-  getBoardById(id:number):Board | undefined {
+  getBoardById(id: number): Board | undefined {
     return this.boards[id];
+  }
+
+  setActiveBoardName(name: string) {
+    this.activeBoardNameSubject.next(name);
   }
 }
 
