@@ -1,37 +1,39 @@
 <div class="board-layout">
+  <router-outlet></router-outlet>
+  
+  <p *ngIf="route.snapshot.url.length > 0 && route.snapshot.url[0].path === 'full-view'" 
+     style="color: var(--purple); font-weight: bold; padding: 10px; border: 2px dashed var(--purple); margin-bottom: 20px; text-align: center;">
+      NESTED VIEW
+  </p>
+
   <!-- Columns Container -->
-   <div class="board-layout" *ngIf="currentBoard">
+  <div class="board-layout-content" *ngIf="currentBoard">
     <div class="columns-container">
-    
-    <!-- Column: Todo -->
-    <div class="board-column" *ngFor="let column of currentBoard.columns">
-      <div class="column-header">
-        <div class="status-color" style="background-color: #49C4E5;"></div>
-        <h4 class="column-name">{{column.name}} ({{column.tasks.length}})</h4>
+      <div class="board-column" *ngFor="let column of currentBoard.columns">
+        <div class="column-header">
+          <div class="status-color" style="background-color: #49C4E5;"></div>
+          <h4 class="column-name">{{column.name}} ({{column.tasks.length}})</h4>
+        </div>
+        
+        <div class="task-list">  
+          <div class="task-card" *ngFor="let task of column.tasks">
+            <h3 class="task-title">{{ task.title }}</h3>
+            <p class="task-subtasks">{{ task.subtasks.length }} subtasks</p>
+          </div>
+        </div>
       </div>
       
-      <div class="task-list">  
-        <!-- Task Card -->
-        <div class="task-card" *ngFor="let task of column.tasks">
-          <h3 class="task-title">{{ task.title }}</h3>
-          <p class="task-subtasks">{{ task.subtasks.length }} subtasks</p>
+      <div class="new-column-container">
+        <div class="new-column-btn">
+          <span>+ New Column</span>
         </div>
       </div>
     </div>
-    
-    <!-- New Column Action -->
-    <div class="new-column-container">
-      <div class="new-column-btn">
-        <span>+ New Column</span>
-      </div>
-    </div>
-    
   </div>
-   </div>
   
-   <div class="board-not-found" *ngIf="!currentBoard">
-     <h2>Board Not Found</h2>
-     <p>The board you are looking for does not exist.</p>
-     <button class="btn btn--primary" routerLink="/boards">Return to Boards</button>
-   </div>
+  <div class="board-not-found" *ngIf="!currentBoard">
+    <h2>Board Not Found</h2>
+    <p>The board you are looking for does not exist.</p>
+    <button class="btn btn--primary" routerLink="/boards">Return to Boards</button>
+  </div>
 </div>

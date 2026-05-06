@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { BoardService } from '../../../services/board.service';
 import { Board } from '../../../models/board.model';
 @Component({
   selector: 'app-board-details',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './board-details.component.html',
   styleUrl: './board-details.component.css',
 })
@@ -14,7 +14,7 @@ export class BoardDetailsComponent implements OnInit {
  boardId: string | null = null;
  currentBoard: Board | undefined
 
- constructor(private route:ActivatedRoute,private boardService:BoardService){}
+ constructor(public route:ActivatedRoute,private boardService:BoardService){}
 
  ngOnInit(): void {
   this.route.paramMap.subscribe(params =>{
