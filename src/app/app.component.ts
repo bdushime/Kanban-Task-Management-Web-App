@@ -3,8 +3,10 @@ import { RouterOutlet, Router, NavigationStart, NavigationEnd, NavigationCancel,
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { BoardsComponent } from './features/boards/boards.component';
+import { ThemeService } from './services/theme.service';
 
+
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +15,21 @@ import { BoardsComponent } from './features/boards/boards.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isSidebarOpen = true;
   isLoading = false;
 
   
-  constructor(private router: Router) {
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      // Close sidebar by default on mobile/tablet
+      if (window.innerWidth < 768) {
+        this.isSidebarOpen = false;
+      }
+    }
+  }
+
+  constructor(private router: Router, private themeService: ThemeService) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         this.isLoading = true; 

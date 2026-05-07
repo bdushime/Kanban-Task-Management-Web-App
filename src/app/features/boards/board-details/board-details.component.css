@@ -5,11 +5,23 @@
   overflow-y: hidden;
 }
 
+@media (max-width: 767px) {
+  .board-layout {
+    padding: 16px;
+  }
+}
+
 .columns-container {
   display: flex;
   gap: 24px;
   height: 100%;
   padding-bottom: 24px; 
+}
+
+@media (max-width: 767px) {
+  .columns-container {
+    gap: 16px;
+  }
 }
 
 .board-column {
@@ -128,5 +140,5 @@
 
 .board-not-found p {
   color: var(--text-secondary);
-  font-size: var(--fs-m);
+  font-size: var(--fs-md);
 }

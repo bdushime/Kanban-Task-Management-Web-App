@@ -12,11 +12,27 @@
 .header__left {
   display: flex;
   align-items: center;
+  gap: 16px;
+}
+
+.header__logo--mobile {
+  display: none;
+}
+
+.header__title-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .header__title {
   color: var(--text-primary);
   margin: 0;
+  font-size: var(--fs-xl);
+}
+
+.header__chevron {
+  display: none;
 }
 
 .header__right {
@@ -25,8 +41,135 @@
   gap: 24px;
 }
 
+.add-task-btn__icon {
+  display: none;
+}
+
+.header__options-container {
+  position: relative;
+}
+
 .header__options-btn {
   background: transparent;
   padding: 8px 16px;
-  margin-right: -16px;
+  cursor: pointer;
+}
+
+.options-menu {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  width: 192px;
+  background-color: var(--bg-sidebar);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 100;
+}
+
+.options-menu__item {
+  background: transparent;
+  text-align: left;
+  font-size: var(--fs-md);
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.options-menu__item:hover {
+  color: var(--text-primary);
+}
+
+.options-menu__item--destructive {
+  color: var(--red);
+}
+
+.options-menu__item--destructive:hover {
+  color: var(--red-hover);
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header {
+    height: var(--header-height-tablet);
+    padding: 0 16px 0 24px;
+  }
+
+  .header__logo-container {
+    height: var(--header-height-tablet);
+    width: var(--sidebar-width-tablet);
+    margin-left: -24px;
+    padding-left: 24px;
+    border-right: 1px solid var(--lines);
+  }
+
+  .header__logo-text {
+    display: block;
+  }
+
+  .header__title-container {
+    padding-left: 24px;
+    cursor: default;
+  }
+
+  .header__title {
+    font-size: var(--fs-xl);
+  }
+
+  .header__chevron {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .header {
+    height: var(--header-height-mobile);
+    padding: 0 16px;
+  }
+
+  .header__logo--mobile {
+    display: block;
+  }
+
+  .header__left {
+    gap: 16px;
+  }
+
+  .header__title-container {
+    cursor: pointer;
+  }
+
+  .header__title {
+    font-size: 18px;
+  }
+
+  .header__chevron {
+    display: block;
+  }
+
+  .header__right {
+    gap: 12px;
+  }
+
+  .add-task-btn {
+    padding: 0 !important;
+    height: 32px;
+    width: 48px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-task-btn__text {
+    display: none;
+  }
+
+  .add-task-btn__icon {
+    display: block;
+    filter: brightness(0) invert(1);
+  }
 }

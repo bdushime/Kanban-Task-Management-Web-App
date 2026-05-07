@@ -6,6 +6,7 @@ import { BoardService } from '../../../services/board.service';
 import { Board } from '../../../models/board.model';
 @Component({
   selector: 'app-board-details',
+  standalone: true,
   imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './board-details.component.html',
   styleUrl: './board-details.component.css',

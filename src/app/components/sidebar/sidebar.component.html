@@ -1,6 +1,6 @@
 <aside class="sidebar">
   <div class="sidebar__logo">
-    <img src="assets/logo-mobile.svg" alt="Kanban Logo" class="logo-icon" />
+    <img src="assets/logo-mobile.svg" alt="" class="logo-icon" />
     <span class="logo-text">kanban</span>
   </div>
 
@@ -11,7 +11,8 @@
       <a *ngFor="let board of boards; let i = index" 
           class="board-item" 
            [routerLink]="['/boards',i]"
-            routerLinkActive="active">
+            routerLinkActive="active"
+            (click)="onBoardClick()">
         <img src="assets/icon-board.svg" class="board-icon" alt="Board" />
         <span class="board-name">{{ board.name }}</span>
     </a>
@@ -26,13 +27,13 @@
   <div class="sidebar__footer">
     <div class="theme-toggle">
       <img src="assets/icon-light-theme.svg" alt="Light Theme" />
-      <div class="toggle-switch" (click)="toggleTheme()" [class.toggled]="isDarkMode">
+      <div class="toggle-switch" (click)="toggleTheme()" [class.toggled]="themeService.isDarkMode">
         <div class="toggle-circle"></div>
       </div>
       <img src="assets/icon-dark-theme.svg" alt="Dark Theme" />
     </div>
 
-    <button class="hide-sidebar-btn">
+    <button class="hide-sidebar-btn" (click)="toggleSidebar.emit()">
       <img src="assets/icon-hide-sidebar.svg" alt="Hide Sidebar" />
       <span>Hide Sidebar</span>
     </button>

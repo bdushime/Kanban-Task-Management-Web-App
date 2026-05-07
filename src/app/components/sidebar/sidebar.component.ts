@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { BoardService } from '../../services/board.service';
 import { Board } from '../../models/board.model';
 import { OnInit } from '@angular/core';
+
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,11 +15,14 @@ import { OnInit } from '@angular/core';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit {
+  @Output() toggleSidebar = new EventEmitter<void>();
   boards: Board[] = [];
   activeIndex = 0;
-  isDarkMode = true;
 
-  constructor(private boardService: BoardService) {}
+  constructor(
+    private boardService: BoardService,
+    public themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
     this.boards = this.boardService.getBoards();
@@ -27,12 +32,13 @@ export class SidebarComponent implements OnInit {
     this.activeIndex = index;
   }
 
-  toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
-    if (this.isDarkMode) {
-      document.body.removeAttribute('data-theme');
-    } else {
-      document.body.setAttribute('data-theme', 'light');
+  onBoardClick() {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      this.toggleSidebar.emit();
     }
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
   }
 }

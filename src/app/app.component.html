@@ -2,18 +2,19 @@
   Loading...
 </div>
 <div class="app-layout" [class.sidebar-closed]="!isSidebarOpen">
-  <app-sidebar *ngIf="isSidebarOpen" class="app-sidebar"></app-sidebar>
+  <div class="sidebar-backdrop" *ngIf="isSidebarOpen" (click)="toggleSidebar()"></div>
+  
+  <app-sidebar *ngIf="isSidebarOpen" class="app-sidebar" (toggleSidebar)="toggleSidebar()"></app-sidebar>
   
   <div class="app-main">
-    <app-header class="app-header"></app-header>
+    <app-header class="app-header" (toggleMobileSidebar)="toggleSidebar()"></app-header>
     
     <main class="app-content">
       <router-outlet></router-outlet>
-      
-
-      <button class="show-sidebar-btn" *ngIf="!isSidebarOpen" (click)="toggleSidebar()">
-        <img src="assets/icon-show-sidebar.svg" alt="Show Sidebar" />
-      </button>
     </main>
   </div>
+
+  <button class="show-sidebar-btn" *ngIf="!isSidebarOpen" (click)="toggleSidebar()">
+    <img src="assets/icon-show-sidebar.svg" alt="Show Sidebar" />
+  </button>
 </div>
